@@ -1,16 +1,24 @@
 <script>
-    const n = 15, asz = 30
+    const n = 5, asz = 5
     var mbsz = 0, ttsz = 0
     const t = Array(n ** 2 - asz).fill(" ").concat(Array(asz).fill("💣")).sort(() => Math.random() - 0.5)
     var eg = false
     var ta = Array(n).fill(0).map((v, i) => Array(n).fill(0).map((q, j) => t[n * i + j]))
     function f(x, y) {
-        if (ta[x][y][0] == '💣') eg = true 
+        if (ta[x][y] == '📍') {
+            ta[x][y] == ' '
+            return true
+        }
+        if (ta[x][y] == '💣📍') {
+            ta[x][y] == '💣'
+            return true
+        }
+        if (ta[x][y] == '💣') eg = true 
         else {
             let hvm = 0;
             [-1,0,1].forEach(vx => {
                 [-1,0,1].forEach(vy => {
-                    if (ta[x+vx] && ta[x+vx][y+vy] && ta[x+vx][y+vy] == "💣") hvm ++
+                    if (ta[x+vx] && ta[x+vx][y+vy] && (ta[x+vx][y+vy] == "💣" || ta[x+vx][y+vy] == "💣📍")) hvm ++
                 })
             })
             ta[x][y] = hvm
@@ -40,12 +48,15 @@
             ta[x][y] = '💣'
             mbsz--
         }
+        if (mbsz == asz && ttsz == 0) {
+            eg = "Nyert"
+        }
         e.preventDefault()
     }
 </script>
 <h1>Aknakereső</h1>
 <table>
-    {#if !eg || ( mbsz == asz && ttsz == 0)}
+    {#if !eg}
     {#each ta as row, i}
         <tr>
             {#each row as cell, j}
@@ -56,13 +67,16 @@
         </tr>
     {/each}
     {:else}
-    {#each ta as row, i}
-    <tr>
-        {#each row as cell, j}
-            <td>{cell}</td>
+        {#each ta as row, i}
+        <tr>
+            {#each row as cell, j}
+                <td>{cell == "💣📍" ? "📍" : (cell == "📍" ? "H" : cell)}</td>
+            {/each}
+        </tr>
         {/each}
-    </tr>
-    {/each}
+        {#if eg=="Nyert"}
+        <tr><td colspan={n}>Nyert</td></tr> 
+        {/if}
     {/if}
 </table>
 <style>

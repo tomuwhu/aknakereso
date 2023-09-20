@@ -1,13 +1,16 @@
 <script>
     const n = 15, asz = 40
-    var mbsz = 0, ttsz = 0
-    const t = Array(n ** 2 - asz).fill(" ")
+    var mbsz = 0, ttsz = 0, t, ta , eg
+    function init() {
+        t = Array(n ** 2 - asz).fill(" ")
                 .concat(Array(asz).fill("💣"))
                 .sort(() => Math.random() - 0.5)
                 .sort(() => Math.random() - 0.5)
-    var eg = false
-    var ta = Array(n).fill(0).map((v, i) => 
+        ta = Array(n).fill(0).map((v, i) => 
                 Array(n).fill(0).map((q, j) => t[n * i + j]))
+        eg = false
+    }
+    init()
     function f(x, y) {
         if (ta[x][y] == '📍') {
             ta[x][y] == ' '
@@ -87,9 +90,9 @@
         </tr>
         {/each}
         {#if eg=="Nyert"}
-        <tr><td class="X💣📍" colspan={n}>Nyert</td></tr>
+        <tr><td class="X💣📍" colspan={n} on:click={init}>Nyert</td></tr>
         {:else}
-        <tr><td class="R" colspan={n}>BUMM</td></tr>
+        <tr><td class="R" colspan={n} on:click={init}>BUMM</td></tr>
         {/if}
     {/if}
 </table>

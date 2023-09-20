@@ -79,7 +79,7 @@
         {#each ta as row, i}
         <tr>
             {#each row as cell, j}
-                <td class={cell == '📍' || cell == "💣📍" ? "J" : ""}
+                <td class={`X${cell}`}
                 >{cell == "💣📍" ? "📍" : (cell == "📍" ? "H" : cell)}</td>
             {/each}
         </tr>
@@ -94,8 +94,21 @@
         color: rgb(77, 23, 23);
         text-shadow: 1px 1px 3px gray;
     }
-    td.J {
-        background-color: #b6b114;
+    td.S {
+        text-shadow: 1px 1px 3px gray;
+        background-color: rgb(216, 221, 165);
+    }
+    td.X💣 {
+        background-color: #684734;
+    }
+    td.X📍 {
+        background-color: #b61414;
+    }
+    td.X💣📍 {
+        background-color: #14b62a;
+    }
+    td.X0,td.X1,td.X2,td.X3,td.X4,td.X5,td.X6,td.X7 {
+        background-color: #93c7b7;
     }
     td.U5, td.U6, td.U7, td.U8 {
         background-color: #1a3d3c;

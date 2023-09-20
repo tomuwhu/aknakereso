@@ -1,9 +1,11 @@
 <script>
     const n = 15, asz = 40
     var mbsz = 0, ttsz = 0
-    const t = Array(n ** 2 - asz).fill(" ").concat(Array(asz).fill("💣")).sort(() => Math.random() - 0.5)
+    const t = Array(n ** 2 - asz).fill(" ")
+                .concat(Array(asz).fill("💣")).sort(() => Math.random() - 0.5)
     var eg = false
-    var ta = Array(n).fill(0).map((v, i) => Array(n).fill(0).map((q, j) => t[n * i + j]))
+    var ta = Array(n).fill(0).map((v, i) => 
+                Array(n).fill(0).map((q, j) => t[n * i + j]))
     function f(x, y) {
         if (ta[x][y] == '📍') {
             ta[x][y] == ' '
@@ -18,14 +20,18 @@
             let hvm = 0;
             [-1,0,1].forEach(vx => {
                 [-1,0,1].forEach(vy => {
-                    if (ta[x+vx] && ta[x+vx][y+vy] && (ta[x+vx][y+vy] == "💣" || ta[x+vx][y+vy] == "💣📍")) hvm ++
+                    if (    ta[x+vx] && ta[x+vx][y+vy] && 
+                            (ta[x+vx][y+vy] == "💣" || ta[x+vx][y+vy] == "💣📍")
+                    ) hvm ++
                 })
             })
             ta[x][y] = hvm
             if (hvm == 0) {
                 [-1,0,1].forEach(vx => {
                     [-1,0,1].forEach(vy => {
-                        if (ta[x+vx] && ta[x+vx][y+vy] && ta[x+vx][y+vy] == " " ) f(x + vx, y + vy)
+                        if (ta[x+vx] && ta[x+vx][y+vy] 
+                            && ta[x+vx][y+vy] == " " 
+                        ) f(x + vx, y + vy)
                     })
                 })
             }
@@ -62,7 +68,9 @@
             {#each row as cell, j}
                 <td on:click={()=>f(i, j)} 
                     on:contextmenu={e => g(i, j, e)} 
-                    class={[0,1,2,3,4,5,6,7].includes(cell) ? "U" : (cell == '📍' || cell == "💣📍" ? "J" : "")}
+                    class={[0,1,2,3,4,5,6,7].includes(cell) 
+                        ? "U" 
+                        : (cell == '📍' || cell == "💣📍" ? "J" : "")}
                     >{cell == '💣' ? '' : (cell == '💣📍' ? '📍' : cell)}</td>
             {/each}
         </tr>

@@ -1,5 +1,5 @@
 <script>
-    const n = 5, asz = 5
+    const n = 15, asz = 40
     var mbsz = 0, ttsz = 0
     const t = Array(n ** 2 - asz).fill(" ").concat(Array(asz).fill("💣")).sort(() => Math.random() - 0.5)
     var eg = false

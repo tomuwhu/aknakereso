@@ -55,14 +55,15 @@
     }
 </script>
 <h1>Aknakereső</h1>
-<table>
+<table on:contextmenu={e => e.preventDefault()}>
     {#if !eg}
     {#each ta as row, i}
         <tr>
             {#each row as cell, j}
                 <td on:click={()=>f(i, j)} 
                     on:contextmenu={e => g(i, j, e)} 
-                    class={[0,1,2,3,4,5,6,7].includes(cell) ? "U" : (cell == '📍' ? "J" : "")}>{cell == '💣' ? '' : (cell == '💣📍' ? '📍' : cell)}</td>
+                    class={[0,1,2,3,4,5,6,7].includes(cell) ? "U" : (cell == '📍' || cell == "💣📍" ? "J" : "")}
+                    >{cell == '💣' ? '' : (cell == '💣📍' ? '📍' : cell)}</td>
             {/each}
         </tr>
     {/each}
@@ -70,7 +71,8 @@
         {#each ta as row, i}
         <tr>
             {#each row as cell, j}
-                <td>{cell == "💣📍" ? "📍" : (cell == "📍" ? "H" : cell)}</td>
+                <td class={cell == '📍' || cell == "💣📍" ? "J" : ""}
+                >{cell == "💣📍" ? "📍" : (cell == "📍" ? "H" : cell)}</td>
             {/each}
         </tr>
         {/each}
@@ -80,13 +82,18 @@
     {/if}
 </table>
 <style>
+    h1 {
+        color: rgb(77, 23, 23);
+        text-shadow: 1px 1px 3px gray;
+    }
     td.J {
-        background-color: #14a8b6;
+        background-color: #b6b114;
     }
     td.U {
         background-color: #145856;
     }
     td {
+        box-shadow: 1px 1px 4px inset black;
         width: 30px;
         height: 30px;
         background-color: rgb(0, 139, 139);

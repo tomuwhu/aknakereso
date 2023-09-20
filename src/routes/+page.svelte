@@ -94,10 +94,6 @@
         color: rgb(77, 23, 23);
         text-shadow: 1px 1px 3px gray;
     }
-    td.S {
-        text-shadow: 1px 1px 3px gray;
-        background-color: rgb(216, 221, 165);
-    }
     td.X💣 {
         background-color: #684734;
     }
@@ -108,16 +104,18 @@
         background-color: #14b62a;
     }
     td.X0,td.X1,td.X2,td.X3,td.X4,td.X5,td.X6,td.X7 {
-        background-color: #93c7b7;
+        text-shadow: 1px 1px 3px gray;
+        background-color: rgb(216, 221, 165);
+        color:#377674
     }
     td.U5, td.U6, td.U7, td.U8 {
         background-color: #1a3d3c;
-        color: rgb(149, 63, 63);
+        color: rgb(255, 175, 175);
         font-weight: bolder;
     }
     td.U4 {
         background-color: #1f4746;
-        color: rgb(4, 52, 62);
+        color: rgb(123, 233, 255);
         font-weight: bolder;
     }
     td.U3 {

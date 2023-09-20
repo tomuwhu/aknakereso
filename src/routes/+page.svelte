@@ -79,7 +79,7 @@
         {#each ta as row, i}
         <tr>
             {#each row as cell, j}
-                <td class={`X${cell}`}
+                <td class={`Z X${cell}`}
                 >{cell == "💣📍" ? "📍" : (cell == "📍" ? "H" : cell)}</td>
             {/each}
         </tr>
@@ -149,6 +149,10 @@
     td:hover {
         background-color: rgb(204, 102, 0);
     }
+    td.Z:hover {
+        cursor: default;
+        background-color: rgb(176, 216, 216);
+    }   
     table {
         border-spacing: 6px;
     }

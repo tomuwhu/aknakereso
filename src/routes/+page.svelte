@@ -74,8 +74,8 @@
                 <td on:click={()=>f(i, j)} 
                     on:contextmenu={e => g(i, j, e)} 
                     class={[0,1,2,3,4,5,6,7].includes(cell) 
-                        ? `U U${cell}`  
-                        : (cell == '📍' || cell == "💣📍" ? "J" : "")}
+                        ? `U U${cell} ` 
+                        : (cell == '📍' || cell == "💣📍" ? "J" : (cell === " " || cell === "💣"? "S" : ""))}
                     >{cell == '💣' ? '' : (cell == '💣📍' ? '📍' : cell)}</td>
             {/each}
         </tr>
@@ -99,7 +99,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
     h1 {
-        width: 574px;
+        width: 560px;
         border-radius: 10px;
         border: solid 6px rgb(15, 92, 106);
         display: inline-block;
@@ -168,15 +168,23 @@
     }
     td {
         box-shadow: 1px 1px 4px inset black;
-        width: 30px;
-        height: 30px;
+        width: 27px;
+        height: 27px;
         background-color: rgb(176, 216, 216);
         border-radius: 7px;
         cursor: pointer;
         color: aliceblue;
+        border: solid 1px rgb(89, 145, 154);
     }
-    td:hover {
-        background-color: rgb(204, 102, 0);
+    td.S {
+        box-shadow: 1px 1px 3px black;
+
+    }
+    td.S:hover {
+        background-color: rgb(15, 106, 106);
+    }
+    td.J:hover {
+        background-color: rgb(125, 174, 137);
     }
     td.Z:hover {
         cursor: default;

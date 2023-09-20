@@ -97,7 +97,7 @@
     {/if}
 </table>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fuggles&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
     h1 {
         width: 574px;
         border-radius: 10px;
@@ -106,15 +106,16 @@
         background-color: #a3dacf;
         color: rgb(53, 96, 118);
         text-shadow: 1px 1px 3px gray;
-        font-family: 'Fuggles', cursive;
-        font-size: 60px;
+        font-family: 'Black Ops One', cursive;
+        font-size: 40px;
         margin: 0px;
+        padding-top: 8px;
         box-shadow: 1px 1px 4px inset black;
     }
     td.R {
-        background-color: #b61414;
-        color: white;
-        font-family: 'Fuggles', cursive;
+        background-color: #ec7575;
+        color: rgb(15, 111, 84);
+        font-family: 'Black Ops One', cursive;
         font-size: 25px;
         text-shadow: 1px 1px 4px white;
     }

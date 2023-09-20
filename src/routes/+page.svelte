@@ -1,10 +1,11 @@
 <script>
     const n = 15, asz = 30
+    var mbsz = 0, ttsz = 0
     const t = Array(n ** 2 - asz).fill(" ").concat(Array(asz).fill("💣")).sort(() => Math.random() - 0.5)
     var eg = false
     var ta = Array(n).fill(0).map((v, i) => Array(n).fill(0).map((q, j) => t[n * i + j]))
     function f(x, y) {
-        if (ta[x][y] == '💣') eg = true 
+        if (ta[x][y][0] == '💣') eg = true 
         else {
             let hvm = 0;
             [-1,0,1].forEach(vx => {
@@ -23,19 +24,34 @@
         }
     }
     function g(x, y, e) {
-        ta[x][y] = '📍'
+        if (ta[x][y] == " ") {
+            ta[x][y] = '📍'
+            ttsz ++
+        }
+        else if (ta[x][y] == "💣") {
+            ta[x][y] = '💣📍'
+            mbsz++
+        }
+        else if (ta[x][y] == "📍") {
+            ta[x][y] = ' '
+            ttsz --
+        }
+        else if (ta[x][y] == "💣📍") {
+            ta[x][y] = '💣'
+            mbsz--
+        }
         e.preventDefault()
     }
 </script>
 <h1>Aknakereső</h1>
 <table>
-    {#if !eg}
+    {#if !eg || ( mbsz == asz && ttsz == 0)}
     {#each ta as row, i}
         <tr>
             {#each row as cell, j}
                 <td on:click={()=>f(i, j)} 
                     on:contextmenu={e => g(i, j, e)} 
-                    class={[0,1,2,3,4,5,6,7].includes(cell) ? "U" : (cell == '📍' ? "J" : "")}>{cell == '💣'?'':cell}</td>
+                    class={[0,1,2,3,4,5,6,7].includes(cell) ? "U" : (cell == '📍' ? "J" : "")}>{cell == '💣' ? '' : (cell == '💣📍' ? '📍' : cell)}</td>
             {/each}
         </tr>
     {/each}
@@ -54,7 +70,7 @@
         background-color: #14a8b6;
     }
     td.U {
-        background-color: #44b8c6;
+        background-color: #145856;
     }
     td {
         width: 30px;
